@@ -62,12 +62,11 @@ const useCommunity = (
     ],
 
     queryFn: ({ pageParam }) => {
-      return getCommunities(accessToken!, {
+      return getCommunities(accessToken, {
         ...params,
         page: pageParam as number
       })
     },
-    enabled: !!accessToken,
     initialPageParam: 0,
     getNextPageParam: lastPage => {
       if (lastPage?.page?.number + 1 === lastPage?.page?.totalPages) {
@@ -79,8 +78,8 @@ const useCommunity = (
   })
   const community = useQuery({
     queryKey: ['community', communityNumber],
-    queryFn: () => getCommunity(communityNumber!, accessToken!),
-    enabled: !!accessToken && !!communityNumber
+    queryFn: () => getCommunity(communityNumber!, accessToken),
+    enabled: !!communityNumber
   })
 
   const images = useQuery({

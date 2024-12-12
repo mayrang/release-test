@@ -17,7 +17,7 @@ import { ERROR_MESSAGES } from '@/constants/errorMessages'
 import RequestError from '@/context/ReqeustError'
 
 export async function getCommunities(
-  accessToken: string,
+  accessToken: string | null,
   params: IListParams & { page: number }
 ) {
   try {
@@ -25,7 +25,7 @@ export async function getCommunities(
       `/api/community/posts`,
 
       {
-        headers: getJWTHeader(accessToken!),
+        headers: accessToken ? getJWTHeader(accessToken!) : {},
         params: params
       }
     )
@@ -37,14 +37,14 @@ export async function getCommunities(
 
 export async function getCommunity(
   communityNumber: number,
-  accessToken: string
+  accessToken: string | null
 ) {
   try {
     const result = await axiosInstance.get(
       `api/community/posts/${communityNumber}`,
 
       {
-        headers: getJWTHeader(accessToken!)
+        headers: accessToken ? getJWTHeader(accessToken!) : {}
       }
     )
     return result.data as Community
