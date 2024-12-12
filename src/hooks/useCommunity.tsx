@@ -44,7 +44,7 @@ const useCommunity = (
   const {
     sortingTypeName = '최신순',
     keyword = '',
-    categoryName = '전체'
+    categoryName = '잡담'
   } = params
   const { accessToken } = authStore()
   const communityList = useInfiniteQuery<
