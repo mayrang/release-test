@@ -22,12 +22,6 @@ const reactRoot = document.querySelector('div#root')
 
 const prepare = async (): Promise<void> => {
   const { worker } = await import('./mocks/browser')
-
-  // await worker.start({
-  //   serviceWorker: {
-  //     url: '/mockServiceWorker.js'
-  //   }
-  // })
 }
 
 prepare().then(() => {
